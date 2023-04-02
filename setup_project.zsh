@@ -29,10 +29,6 @@ fi
 current_dir=.
 anvil_app="$current_dir/AnvilWorksApp"
 yaml2schema="$current_dir/yaml2schema"
-anvil="$current_dir/anvil"
-_anvil_designer="$current_dir/_anvil_designer"
-anvil_extras="$current_dir/anvil_extras"
-yaml2schema="$current_dir/yaml2schema"
 # setopt interactivecomments
 # allow comments for zsh
 # Create new rep
@@ -83,12 +79,10 @@ if ! $current_dir/yaml2schema.zsh "$anvil_app" "$current_dir" "$yaml2schema"; th
     exit 1
 fi
 
-echo "copying a demo test file into tests."
-cp "$pyDALAnvilWorks"/tests/test_user.py "$current_dir"/tests || exit 1
 
 echo "Copy server and client files .."
-chmod +x "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh || exit 1
-if ! "$pyDALAnvilWorks"/git_pull_from_anvil_works.zsh "$anvil_app" "$current_dir"; then
+chmod +x "$current_dir"/git_pull_from_anvil_works.zsh || exit 1
+if ! $current_dir/git_pull_from_anvil_works.zsh "$anvil_app" "$current_dir"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
