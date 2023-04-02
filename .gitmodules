@@ -1,0 +1,12 @@
+[submodule "anvil"]
+	path = anvil
+	url = https://github.com/benlawraus/anvil.git
+[submodule "anvil_extras"]
+	path = anvil_extras
+	url = https://github.com/benlawraus/anvil_extras.git
+[submodule "_anvil_designer"]
+	path = _anvil_designer
+	url = https://github.com/benlawraus/_anvil_designer.git
+[submodule "yaml2schema"]
+	path = yaml2schema
+	url = https://github.com/benlawraus/yaml2schema.git
