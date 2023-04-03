@@ -28,7 +28,6 @@ fi
 # what your anvil app is called
 current_dir=$(pwd)
 anvil_app="$current_dir"/AnvilWorksApp
-yaml2schema="$current_dir"/yaml2schema
 # setopt interactivecomments
 # allow comments for zsh
 # Create new rep
@@ -51,7 +50,7 @@ fi
 echo "Activate virtualenv ${VIRTUAL_ENV} .."
 source venv/bin/activate
 if ! [[ $VIRTUAL_ENV = *"$current_dir"* ]]; then
-    echo "Errors occurred. Exiting."
+    echo "Could not activate virtual_env. Exiting."
     exit 1
 fi
 
@@ -76,15 +75,15 @@ chmod +x "$git_pull" || exit 1
 chmod +x "$git_push" || exit 1
 
 # generate pydal_def.py
-echo "Generate pydal_def.py in the tests directory .."
-if ! "$yaml_convert" "$anvil_app" "$current_dir" "$yaml2schema"; then
+echo "Generate pydal_def.py in the tests directory (running $(basename $yaml_convert).."
+if ! "$yaml_convert"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
 
 
-echo "Copy server and client files .."
-if ! "$git_pull" "$anvil_app" "$current_dir"; then
+echo "Copy server and client files (running $(basename $git_pull).."
+if ! "$git_pull" ; then
     echo "Errors occurred. Exiting."
     exit 1
 fi

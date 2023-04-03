@@ -1,5 +1,15 @@
-anvil_app=./AnvilApp
-current_dir=.
+current_dir=$(pwd)
+anvil_app="$current_dir"/AnvilApp
+if [ $# -eq 2 ]
+  then
+    anvil_app=$1
+    current_dir=$2
+else
+    echo "No arguments supplied. Using:
+     ${anvil_app}
+     ${current_dir}"
+fi
+
 # copy files into back-up directory
 echo "Copying laptop files into backup directory before syncing."
 mkdir -p "$current_dir"/tests/backup || exit 1

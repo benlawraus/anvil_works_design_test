@@ -1,5 +1,14 @@
-anvil_app=./AnvilApp
-current_dir=.
+current_dir=$(pwd)
+anvil_app="$current_dir"/AnvilApp
+if [ $# -eq 2 ]
+  then
+    anvil_app=$1
+    current_dir=$2
+else
+    echo "No arguments supplied. Using:
+     ${anvil_app}
+     ${current_dir}"
+fi
 
 if git -C "$anvil_app" pull origin master; then
     echo "git pull from anvil completed with no errors (doing this before pushing...)"
