@@ -50,7 +50,7 @@ if ! python3 -m venv ./venv; then
 fi
 echo "Activate virtualenv ${VIRTUAL_ENV} .."
 source venv/bin/activate
-if ! [[ $VIRTUAL_ENV = *"${current_dir}"* ]]; then
+if ! [[ $VIRTUAL_ENV = *"${PWD}"* ]]; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
