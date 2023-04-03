@@ -1,7 +1,7 @@
 echo "~  -  ~  -  ~  -  ~  -  ~  -  ~  -  ~  -  ~  -  ~  -  ~"
 current_dir=$(pwd)
 yaml2schema="$current_dir"/yaml2schema
-anvil_app="current_dir"/AnvilApp
+anvil_app="$current_dir"/AnvilWorksApp
 echo "Copies anvil.yaml from ${anvil_app} and generates a new pydal_def.py in tests."
 echo "Also, updates AppTables.py to reflect correct table names with their column names and types."
 # check that directories exists, exit otherwise
@@ -18,12 +18,14 @@ if [ ! -d "$anvil_app" ]; then
   echo "${anvil_app}  not there. git your app from anvil.works."
   exit 1
 fi
-# copy anvil.yaml and anvil_refined.yaml (anvil_refined.yaml lives in . )
+echo "Copies anvil.yaml from ${anvil_app} and generates a new pydal_def.py in tests."
+echo "Also, updates AppTables.py to reflect correct table names with their column names and types."
 anvil_refined_yaml=$current_dir/anvil_refined.yaml
 echo "Using anvil.yaml and ${anvil_refined_yaml} to generate pydal_def.py"
 #rm "$yaml2schema"/src/yaml2schema/input/*.yaml
-cp "$anvil_app"/anvil.yaml ./input/ || exit 1
-if ! cp "$current_dir"/anvil_refined.yaml ./input/; then
+yaml2schema_yaml="$current_dir"/tests/yaml/
+cp "$anvil_app"/anvil.yaml $yaml2schema_input || exit 1
+if ! cp "$current_dir"/anvil_refined.yaml "$yaml2schema_yaml"/in; then
   echo "No anvil_refined.yaml. Continuing..."
 fi
 if ! [[ $VIRTUAL_ENV = *"${current_dir}"* ]]; then
@@ -38,7 +40,7 @@ if ! python3 "$yaml2schema"/src/yaml2schema/main.py; then
     exit 1
 fi
 # copy the pyDAL definition file to app
-if ! cp ./output/pydal_def.py "$current_dir"/tests/; then
+if ! cp "$yaml2schema_yaml"/out/pydal_def.py "$current_dir"/tests/; then
   echo "Create tests directory .."
   mkdir "$current_dir"/tests || exit 1
   mkdir "$current_dir"/tests/database || exit 1
@@ -50,7 +52,7 @@ rm -f "$current_dir"/tests/database/*.log
 rm -f "$current_dir"/tests/database/*.sqlite
 echo "Generating new pydal database schema (pydal_def.py)."
 # check that directories are there and writable
-if ! python3 tests/pydal_def.py; then
+if ! python3 "$current_dir"/tests/pydal_def.py; then
     echo "Error when generating database files. Exiting."
     exit 1
 fi
