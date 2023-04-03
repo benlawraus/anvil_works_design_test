@@ -26,9 +26,9 @@ else
 fi
 
 # what your anvil app is called
-current_dir=.
-anvil_app="$current_dir/AnvilWorksApp"
-yaml2schema="$current_dir/yaml2schema"
+current_dir=$(pwd)
+anvil_app="$current_dir"/AnvilWorksApp
+yaml2schema="$current_dir"/yaml2schema
 # setopt interactivecomments
 # allow comments for zsh
 # Create new rep
@@ -41,7 +41,7 @@ if ! git clone "$myAnvilGit" "$anvil_app"; then
 fi
 
 echo "cp anvil.yaml .."
-cp "$anvil_app"/anvil.yaml $current_dir/ || exit 1
+cp "$anvil_app"/anvil.yaml "$current_dir"/ || exit 1
 
 # create a virtualenv
 echo "Create virtualenv .."
@@ -50,7 +50,7 @@ if ! python3 -m venv ./venv; then
 fi
 echo "Activate virtualenv ${VIRTUAL_ENV} .."
 source venv/bin/activate
-if ! [[ $VIRTUAL_ENV = *"${PWD}"* ]]; then
+if ! [[ $VIRTUAL_ENV = *"$current_dir"* ]]; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
@@ -68,13 +68,13 @@ pip3 install pytest-tornasync
 
 date
 echo "make scripts executable .."
-chmod +x current_dir/git_push_to_anvil_works.zsh || exit 1
-chmod +x current_dir/git_pull_to_anvil_works.zsh || exit 1
-chmod +x current_dir/yaml2schema.zsh || exit 1
+chmod +x "$current_dir"/git_push_to_anvil_works.zsh || exit 1
+chmod +x "$current_dir"/git_pull_to_anvil_works.zsh || exit 1
+chmod +x "$current_dir"/yaml2schema.zsh || exit 1
 
 # generate pydal_def.py
 echo "Generate pydal_def.py in the tests directory .."
-if ! $current_dir/yaml2schema.zsh "$anvil_app" "$current_dir" "$yaml2schema"; then
+if ! "$current_dir"/yaml2schema.zsh "$anvil_app" "$current_dir" "$yaml2schema"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
@@ -82,11 +82,11 @@ fi
 
 echo "Copy server and client files .."
 chmod +x "$current_dir"/git_pull_from_anvil_works.zsh || exit 1
-if ! $current_dir/git_pull_from_anvil_works.zsh "$anvil_app" "$current_dir"; then
+if ! "$current_dir"/git_pull_from_anvil_works.zsh "$anvil_app" "$current_dir"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
-
+cd "$current_dir" || exit 1
 echo "Generate all the _anvil_designer.py files for every form."
 if ! python3 -m _anvil_designer.generate_files; then
   echo "Crashed while regenerating the _anvil_designer.py files."
