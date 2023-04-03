@@ -67,22 +67,24 @@ pip3 install pytest
 pip3 install pytest-tornasync
 
 date
+git_push="$current_dir"/git_push_to_anvil_works.zsh
+git_pull="$current_dir"/git_pull_from_anvil_works.zsh
+yaml_convert="$current_dir"/yaml2schema.zsh
 echo "make scripts executable .."
-chmod +x "$current_dir"/git_push_to_anvil_works.zsh || exit 1
-chmod +x "$current_dir"/git_pull_to_anvil_works.zsh || exit 1
-chmod +x "$current_dir"/yaml2schema.zsh || exit 1
+chmod +x "$yaml_convert" || exit 1
+chmod +x "$git_pull" || exit 1
+chmod +x "$git_push" || exit 1
 
 # generate pydal_def.py
 echo "Generate pydal_def.py in the tests directory .."
-if ! "$current_dir"/yaml2schema.zsh "$anvil_app" "$current_dir" "$yaml2schema"; then
+if ! "$yaml_convert" "$anvil_app" "$current_dir" "$yaml2schema"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
 
 
 echo "Copy server and client files .."
-chmod +x "$current_dir"/git_pull_from_anvil_works.zsh || exit 1
-if ! "$current_dir"/git_pull_from_anvil_works.zsh "$anvil_app" "$current_dir"; then
+if ! "$git_pull" "$anvil_app" "$current_dir"; then
     echo "Errors occurred. Exiting."
     exit 1
 fi
