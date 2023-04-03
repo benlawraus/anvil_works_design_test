@@ -1,0 +1,1 @@
+This directory is for client_code and server_code copies before a git pull from anvil.works.
