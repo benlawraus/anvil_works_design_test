@@ -1,4 +1,4 @@
-myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
+#myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
 # what your anvil app is called
 current_dir=$(pwd)
 anvil_app="$current_dir"/AnvilWorksApp
