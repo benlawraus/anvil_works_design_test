@@ -24,7 +24,7 @@ anvil_refined_yaml=$current_dir/anvil_refined.yaml
 echo "Using anvil.yaml and ${anvil_refined_yaml} to generate pydal_def.py"
 #rm "$yaml2schema"/src/yaml2schema/input/*.yaml
 yaml2schema_yaml="$current_dir"/tests/yaml/
-cp "$anvil_app"/anvil.yaml $yaml2schema_input || exit 1
+cp "$anvil_app"/anvil.yaml "$yaml2schema_yaml"/in || exit 1
 if ! cp "$current_dir"/anvil_refined.yaml "$yaml2schema_yaml"/in; then
   echo "No anvil_refined.yaml. Continuing..."
 fi
