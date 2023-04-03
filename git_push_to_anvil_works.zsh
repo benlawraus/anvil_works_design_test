@@ -36,7 +36,7 @@ else
     fi
   fi
 fi
-if git push -C "$anvil_app" origin master --quiet; then
+if git -C "$anvil_app" push origin master --quiet; then
     echo "git push to anvil.works completed with no errors."
 else
     echo "git push to anvil.works errors initiated premature exit.
