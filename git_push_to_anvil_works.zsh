@@ -1,5 +1,5 @@
 current_dir=$(pwd)
-anvil_app="$current_dir"/AnvilApp
+anvil_app="$current_dir"/AnvilWorksApp
 if [ $# -eq 2 ]
   then
     anvil_app=$1

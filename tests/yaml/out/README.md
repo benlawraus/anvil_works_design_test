@@ -1,1 +1,1 @@
-Temporary files for yaml2scema
+Temporary files for yaml2schema

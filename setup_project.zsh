@@ -1,4 +1,7 @@
 myAnvilGit="ssh://youranvilworksusername@anvil.works:2222/gobblygook.git"
+# what your anvil app is called
+current_dir=$(pwd)
+anvil_app="$current_dir"/AnvilWorksApp
 
 echo "What this script does:"
 echo "Installs the git submodules:"
