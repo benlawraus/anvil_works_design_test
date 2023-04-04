@@ -85,15 +85,13 @@ Directory Structure
 
 Scripts Action
 ----------------
-- `setup_project.zsh`  (creates `venv`, clones submodules) Executed only once to initialize project structure.
-- `yaml2schema.zsh`  (converts `anvil.yaml` to `tests/pydal_def.py`, the database schema) This script needs to be run after any changes to the database schema.
-- `git_push_to_anvil_works.zsh`  (pushes your changes to [anvil.works](anvil.works)) Needs to run to sync local changes to the app server.
-- `git_pull_from_anvil_works.zsh`  (pulls your changes from [anvil.works](anvil.works)) Needs to be run to sync local machine to changes on app server.
+- [setup_project.zsh](setup_project.zsh)  (creates `venv`, clones submodules) Executed only once to initialize project structure.
+- [yaml2schema.zsh](yaml2schema.zsh)  (converts `anvil.yaml` to `tests/pydal_def.py`, the database schema) This script needs to be run after any changes to the database schema.
+- [git_push_to_anvil_works.zsh](git_push_to_anvil_works.zsh)  (pushes your changes to [anvil.works](anvil.works)) Needs to run to sync local changes to the app server.
+- [git_pull_from_anvil_works.zsh](git_pull_from_anvil_works.zsh)  (pulls your changes from [anvil.works](anvil.works)) Needs to be run to sync local machine to changes on app server.
 - `_anvil_designer/generate_files.py`  (converts `form_template.yaml` to mock client_code classes in `_anvil_designer.py`) Is executed from `git_pull_from_anvil_works`.
 - `_anvil_designer/generate_apptable.py` (generates dummy classes in `AppTables`  from `anvil.yaml` to allow auto-complete of database tables). Is executed from `yaml2schema`.
 
-Notes
-=====
 Database
 -------------------------
 1. Run `./yaml2schema.zsh`
@@ -138,7 +136,7 @@ In case it is needed within a test:
 
 
 The entire anvil docs have been converted into dummy classes and functions in the repo [anvil](https://github.com/benlawraus/anvil). If the IDE does not auto-complete,
-make sure the dummy class or function has an instruction to be imported. These classes and functions are in the [anvil](anvil)
+make sure the dummy class or function has an instruction to be imported. These classes and functions are in the anvil
 directory.
 
 A form is then a child class of a Template class imported by:
@@ -164,4 +162,4 @@ has to be **AFTER** the call to init_components().
 Compatibility
 -------------
 This project was developed and tested only on OSX with PyCharm. 
-To run on other systems, only the scripts need to be translated.. 
+To run on other systems, the scripts need to be translated for your particular system. ChatGPT can offer a good starting point.
