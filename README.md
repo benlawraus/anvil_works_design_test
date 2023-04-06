@@ -223,6 +223,12 @@ However, others need to be modified. This is the reason it was forked and copied
 Notes on Use
 =============
 
+Paths
+-----
+If server-code modules cannot see client_code modules or vice-versa, the IDE may need to include these in their paths. To do this in PyCharm:
+
+![PyCharm Paths](https://github.com/benlawraus/cached_lists_anvil_works/blob/master/tests_project/doc_images/add_interpreter_paths.gif?raw=true)
+
 Updating Rows
 -------------
 *anvil.works* allows you update your database using:
