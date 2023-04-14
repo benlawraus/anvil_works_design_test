@@ -2,6 +2,8 @@ SUMMARY
 =======
 To assist with coding (with auto-complete) and testing  of an [anvil.works](https://anvil.works) app within an IDE such as [PyCharm](https://www.jetbrains.com/pycharm/).
 
+An example of this is [cached_lists_anvil_works](https://github.com/benlawraus/cached_lists_anvil_works).
+
 
 Uses [_anvil_designer](https://github.com/benlawraus/_anvil_designer) and [yaml2schema](https://github.com/benlawraus/yaml2schema)
 to generate a pseudo-front-end and a back-end on a local machine. After installation, no internet connection is required to run tests, as the database is replicated in sqlite.
