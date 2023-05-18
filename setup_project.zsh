@@ -77,12 +77,6 @@ chmod +x "$yaml_convert" || exit 1
 chmod +x "$git_pull" || exit 1
 chmod +x "$git_push" || exit 1
 
-# generate pydal_def.py
-echo "Generate pydal_def.py in the tests directory (running $(basename $yaml_convert).."
-if ! "$yaml_convert"; then
-    echo "Errors occurred. Exiting."
-    exit 1
-fi
 
 
 echo "Copy server and client files (running $(basename $git_pull).."
@@ -94,5 +88,12 @@ cd "$current_dir" || exit 1
 echo "Generate all the _anvil_designer.py files for every form."
 if ! python3 -m _anvil_designer.generate_files; then
   echo "Crashed while regenerating the _anvil_designer.py files."
+    exit 1
+fi
+
+# generate pydal_def.py
+echo "Generate pydal_def.py in the tests directory (running $(basename $yaml_convert).."
+if ! "$yaml_convert"; then
+    echo "Errors occurred. Exiting."
     exit 1
 fi
