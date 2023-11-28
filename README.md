@@ -153,11 +153,15 @@ A Form __init__ would look like::
             self.init_components(**properties)
             self.drop_down.items = ('up','down','sideways')
 
-When running python on a local machin, the attributes of Form1 are initialized in the self.init_components(), so::
+When running python on a local machine, the attributes of Form1 are initialized in the self.init_components(), so::
 
     self.drop_down.items = ('up','down','sideways')
 
 has to be **AFTER** the call to init_components().
+
+Tests using pytest
+==================
+Tests are run using [pytest](https://docs.pytest.org/en/latest/). 
 
 User Login/Logout
 -----------------
@@ -222,8 +226,6 @@ directory. Then the publish/subscribe functionality can be used on the local com
 
 However, others need to be modified. This is the reason it was forked and copied into its own repo. The [cached_lists_anvil_works](https://github.com/benlawraus/cached_lists_anvil_works) repo uses a modified `storage.py` from anvil_extras to imitate browser `indexed_DB`.
 
-Notes on Use
-=============
 
 Paths
 -----
